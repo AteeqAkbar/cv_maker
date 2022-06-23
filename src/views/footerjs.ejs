@@ -1,0 +1,39 @@
+  
+<script>
+  const frm1 = document.getElementById("form1");
+  
+  frm1.addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+      const name = frm1.name.value;
+      const email = frm1.email.value;
+      const pass = frm1.pass.value;
+      const subheading = frm1.subheading.value;
+      const about = frm1.about.value;
+      const phone = frm1.phone.value;
+      const location1 = frm1.location1.value;
+
+      console.log(pass,name, email,phone,subheading,about,location1);
+
+      console.log("with in from");
+      const res = await fetch("http://localhost:3000/signin", {
+           method: "post",
+          body: JSON.stringify({
+
+            pass:pass,name:name, email:email,phone:phone,subheading:subheading,about:about,location1:location1
+          }),
+          headers: { "Content-Type": "application/json" }
+      })
+      const server = await res.text()
+      console.log(server);
+      if (server) {
+          location.assign("http://localhost:3000/skills")
+      }
+  })
+</script>
+
+
+</body>
+
+</html>
+ 
